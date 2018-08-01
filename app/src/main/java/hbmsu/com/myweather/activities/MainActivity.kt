@@ -21,7 +21,14 @@ import retrofit.Callback
 import android.support.v4.view.ViewCompat
 import android.support.v4.app.ActivityOptionsCompat
 import android.view.View
+import com.johnhiott.darkskyandroidlib.models.DataPoint
 import hbmsu.com.myweather.model.WeatherData
+import android.app.AlarmManager
+import android.content.Context.ALARM_SERVICE
+import android.app.PendingIntent
+import android.content.Context
+import hbmsu.com.myweather.custom.NotificationReceiver
+import java.util.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -387,15 +394,17 @@ class MainActivity : AppCompatActivity() {
         weather.getWeather(request, object : Callback<WeatherResponse> {
             override fun success(weather: WeatherResponse?, response: retrofit.client.Response?) {
                 Utils.hideLoading()
-                var adapter = WeatherRVAdapter(this@MainActivity) { position, view ->
-                    getDayWeather(weather!!.daily.data[position].time, view)
+                if (weather != null && weather.daily != null && weather.daily.data != null && weather.daily.data.size > 0) {
+                    var adapter = WeatherRVAdapter(this@MainActivity) { position, view ->
+                        getDayWeather(weather!!.daily.data[position].time, view)
 
+                    }
+                    rvWeather.adapter = adapter
+                    rvWeather.itemAnimator = SlideInRightAnimator()
+                    Handler().postDelayed({ adapter.addItems(weather!!.daily.data) }, 200)
+
+                    generateLocalNotifications(weather.daily.data)
                 }
-                rvWeather.adapter = adapter
-                rvWeather.itemAnimator = SlideInRightAnimator()
-                Handler().postDelayed({ adapter.addItems(weather!!.daily.data) }, 200)
-
-
             }
 
 
@@ -414,6 +423,33 @@ class MainActivity : AppCompatActivity() {
 //
 ////            adapter.addItems(data)
 //        }
+    }
+
+    private fun generateLocalNotifications(data: List<DataPoint>) {
+        var size = data.size
+        if (size > 2) {
+            var middle = size / 2
+            registerNotification(data[middle])
+            registerNotification(data[size - 1])
+        } else {
+            registerNotification(data[size - 1])
+        }
+    }
+
+    private fun registerNotification(dataPoint: DataPoint) {
+        val alarmIntent = Intent(this, NotificationReceiver::class.java)
+        alarmIntent.putExtra("object", Utils.getStringFromModel(dataPoint))
+        val pendingIntent = PendingIntent.getBroadcast(this, 0, alarmIntent, 0)
+
+        val manager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
+
+        val calendar = Calendar.getInstance()
+        calendar.timeInMillis = dataPoint.time
+
+
+        manager.setExact(AlarmManager.RTC_WAKEUP, calendar.timeInMillis,
+                 pendingIntent)
+
     }
 
     private fun generateWeatherBuilder(time: Long = -1): Request {

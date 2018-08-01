@@ -20,7 +20,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".activities.SettingsActivity" />
-        <activity android:name=".activities.WeatherDetailsActivity"></activity>
+        <activity android:name=".activities.WeatherDetailsActivity"/>
+
+        <receiver android:name=".custom.NotificationReceiver" />
+
     </application>
 
 </manifest>

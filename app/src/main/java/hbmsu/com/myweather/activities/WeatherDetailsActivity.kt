@@ -30,7 +30,7 @@ class WeatherDetailsActivity : AppCompatActivity() {
     private fun fillData() {
         if (weatherDetail != null && weatherDetail.currently != null) {
             tvDate.text = Utils.formatMilliToDate(weatherDetail.currently.time)
-            tvDegree.text = String.format(getString(R.string.degree), weatherDetail.currently.temperature.toString(), Utils.getDegreeUnit())
+            tvDegree.text = String.format(getString(R.string.degree), weatherDetail.currently.temperature.toInt(), Utils.getDegreeUnit())
             tvMaxDegree.text = String.format(getString(R.string.degree),
                     weatherDetail.currently.temperatureMax.toInt(), Utils.getDegreeUnit())
             tvMinDegree.text = String.format(getString(R.string.degree),
@@ -63,7 +63,7 @@ class WeatherDetailsActivity : AppCompatActivity() {
                 var tvSummary = view.findViewById<TextView>(R.id.tvSummary)
 
                 tvDate.text = Utils.formatMilliToTime(it.time.toInt())
-                tvTemp.text = String.format(getString(R.string.degree), it.temperature, Utils.getDegreeUnit())
+                tvTemp.text = String.format(getString(R.string.degree), it.temperature.toInt(), Utils.getDegreeUnit())
                 tvSummary.text = it.summary
 
                 llHourlyWeather.addView(view)

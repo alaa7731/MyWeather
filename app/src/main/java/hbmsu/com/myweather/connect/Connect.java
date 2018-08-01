@@ -30,7 +30,7 @@ public class Connect implements Callback {
 
     public static com.johnhiott.darkskyandroidlib.models.Request.Units unitSi = com.johnhiott.darkskyandroidlib.models.Request.Units.SI;
     public static com.johnhiott.darkskyandroidlib.models.Request.Units unitFr = com.johnhiott.darkskyandroidlib.models.Request.Units.US;
-    public com.johnhiott.darkskyandroidlib.models.Request.Units selectedUnit = com.johnhiott.darkskyandroidlib.models.Request.Units.US;
+    public com.johnhiott.darkskyandroidlib.models.Request.Units selectedUnit = com.johnhiott.darkskyandroidlib.models.Request.Units.SI;
     private static final Connect ourInstance = new Connect();
     private String BASE_URL = "https://api.darksky.net/forecast/e551edd89cf2e1ce3b92533b222b330c/";
     private WeatherServices weatherServices;

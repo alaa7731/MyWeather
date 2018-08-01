@@ -14,4 +14,5 @@
     <string name="h">H.</string>
     <string name="l">L.</string>
     <string name="temp">Temp.</string>
+    <string name="weather">Weather</string>
 </resources>
