@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">My Weather</string>
+    <string name="internetMessage">Check your network connection</string>
+    <string name="degree">%s °%s</string>
+    <string name="visibility">Visibility:</string>
+    <string name="humidity">Humidity</string>
+    <string name="max_temp">Max Temp</string>
+    <string name="min_temp">Min Temp</string>
+    <string name="celsius">°Celsius</string>
+    <string name="fahrenheit">°Fahrenheit</string>
+    <string name="currently">Currently</string>
+    <string name="temperature_details">Temperature Details</string>
+    <string name="day_temperature">Day Temperature</string>
+    <string name="h">H.</string>
+    <string name="l">L.</string>
+    <string name="temp">Temp.</string>
 </resources>

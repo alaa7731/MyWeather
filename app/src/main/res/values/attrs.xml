@@ -1,0 +1,43 @@
+<resources>
+    <attr name="view_radius" format="dimension" />
+    <attr name="stroke_width" format="dimension" />
+    <attr name="stroke_color" format="color" />
+    <attr name="solid_color" format="color" />
+    <attr name="half_circle" format="boolean" />
+    <attr name="with_gradient" format="boolean" />
+    <attr name="layout_enabled" format="boolean" />
+    <attr name="textColor" format="color" />
+    <attr name="fontName" format="string"/>
+    <attr name="textSize" format="dimension" />
+
+
+    <declare-styleable name="MyTextView">
+        <attr name="fontName" />
+        <attr name="view_radius" />
+        <attr name="solid_color" />
+        <attr name="stroke_color" />
+        <attr name="stroke_width" />
+    </declare-styleable>
+
+    <declare-styleable name="MyButton">
+        <attr name="fontName" />
+        <attr name="view_radius" />
+        <attr name="solid_color" />
+        <attr name="stroke_color" />
+        <attr name="stroke_width" />
+        <attr name="half_circle" />
+        <attr name="with_gradient" />
+    </declare-styleable>
+
+    <declare-styleable name="MyLinearLayout">
+        <attr name="layout_enabled" />
+        <attr name="half_circle" />
+        <attr name="view_radius" />
+        <attr name="solid_color" />
+        <attr name="stroke_color" />
+        <attr name="stroke_width" />
+        <attr name="with_gradient" />
+    </declare-styleable>
+
+
+ </resources>
